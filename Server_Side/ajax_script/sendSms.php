@@ -16,7 +16,8 @@ $result = array(); //test array to monitor
 
 
 //decides whether include test or prod credentials based on $_POST['serverIfTestStatus'] value from ajax
-if ($_POST['serverIfTestStatus'] === 'true') {
+//if ($_POST['serverIfTestStatus'] === 'true') {
+if (isset($_POST['serverPhone']) && $_POST['serverIfTestStatus'] === 'true') { //Fix 2021
 	//by default $_POST['serverIfTestStatus'] is TRUE (i.e require test credentials)
 	require_once '../Credentials/test_credentials.php';
     $result['includeFile'] = "Will include Credentials/test_credentials.php";
@@ -43,6 +44,9 @@ if (isset($_POST['serverPhone']) && isset($_POST['serverSms'])){
 	
 } else {
 	$smsSendStatus = "Phone number or sms smsSendStatus is missing";
+    //$checked  = false;
+    checked = array('errorPhone' => 'Error in ajax_script/sendSms.php', 'errorSms' =>  'Error in sendSms'); //Fix 2021
+
 }
 
 
