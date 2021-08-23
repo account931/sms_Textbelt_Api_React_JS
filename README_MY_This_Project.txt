@@ -1,4 +1,5 @@
-TextBelt Api React Js
+TextBelt Api React Js (React 16.13.1)
+
 
 IMPORTANT: WHEN DEPLOYING ON REAL HOSTING, DO NOT FORGET TO CHECK IF {Classes/SendSms.php} and {Classes/ CheckSmsDeliveryStat.php} Line 18 is commented,
  ie.artificial json response is disabled.
@@ -10,15 +11,17 @@ IMPORTANT: WHEN DEPLOYING ON REAL HOSTING, DO NOT FORGET TO CHECK IF {Classes/Se
 3.2 How sms is sent.
 3.3 Getting response/answer from TextBelt Api
 3.4 Check delivery status
-3.5 If project crashes after new install/moving to new folder
+
+
+
 
 ------------------------------------------------------
 
 1. General info
 
 # This project is an ancestor/predecessor/less-developed-copy of { CLEANSED_GIT_HUB/Sms_Textbelt_Api_React_JS }. 
-  Main difference is that{CLEANSED_GIT_HUB/Sms_Textbelt_Api_React_JS} contains some fixes (like JQ input was switched to pure React) + code Directory URL detection (for ajax) via .env (in JS) + cleaner code (less commented code)
-
+  Main difference is that{CLEANSED_GIT_HUB/Sms_Textbelt_Api_React_JS} contains some fixes (like JQ input was switched to pure React) + getting Directory URL  (for ajax) via .env (REACT_APP_APPLICATION_DIRECTORY) (e.g in src/MyComponents/TextArea/functions_injected/sendSmsMessage.js and  /child_components/ResultFromTextbeltApi.js) + cleaner code (less commented code). In this project you have to hardcode ajax URL for localhost.
+  
 # Structure of this project => see https://github.com/account931/sms_Textbelt_Api_React_JS/blob/master/README_MY_React_Com_Commands.txt
 #This a react version of TextBelt Api client.
 # Index.js is a JS entry point, it contains <App/> Component, 
@@ -34,6 +37,7 @@ which contains all the rest component { <TextArea/>, <TopSectionButtons/> etc}
 =====================================================
 
 2. Testing on localhost vs real hosting. If project crashes after new install/moving to new folder
+
 #Server side php uses cURL, and as long as localhost does not support cURL, you can not test it on localhost normally. 
 The fix it to test on localhost (when u using live localhost://3000, not build folder) is: 
   a.)uncomment Line 18  in Classes/SendSms.php (this will create artificial json response) 
@@ -51,8 +55,9 @@ Now relevant ajax Url is  selected automatically, bases on current window url
 
 d.) if ajax crashes, check  var localhostURL + var realServerProdURL in  TextArea/functions_injected/sendSmsMessage.js  and TextArea/child_components/ResultFromTextbeltApi.js 
 
-=======================================================
 
+
+=======================================================
 3.1 How it works:
 
 1.When u click "Send sms" button in TextArea/TextArea.js,  function run_This_Component_Functions_In_Queue() is called. This function calls function getFormValue() and checks if it returns TRUE. getFormValue() checks if sms/number not empty, checks number against UA or EU regExp.If getFormValue() returns TRUE, function sendSmsMessage() is called. This function for better code usability is extracted in TextArea/functions_injected/sendSmsMessage.js.(while still called in TextArea/TextArea.js).
@@ -65,10 +70,14 @@ TextArea/functions_injected/sendSmsMessage.js.(while still called in TextArea/Te
 
 
 
+
+
 ==============================================
 3.3 Getting response/answer from TextBelt Api
 Api response display (i.e if sms sent/not sent) is implemented in TextArea/child_components/ResultFromTextbeltApi.js. Check delivery status is implemented here too. 
 The visibility of Div with response depends  on {this.state.ifUserClickedSendSms}(set and updated in <Textarea.js> using TextArea/functions_injected/sendSmsMessage.js), and that is passed to <ResultFromTextbeltApi.js> as { this.props.showHideDivData }
+
+
 
 
 
