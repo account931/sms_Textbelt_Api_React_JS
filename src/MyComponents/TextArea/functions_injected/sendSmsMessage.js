@@ -122,8 +122,9 @@ export function sendSmsMessage (){
 	      $(".ajax-loader").show(); //show loader
 		  
 		  //decide which url to use, switching ajax url when running on localHost or real Hosting
-		  var localhostURL = 'http://localhost/sms_Textbelt_Api_React_JS/sms-api-react/Server_Side/ajax_script/sendSms.php';
-		  var realServerProdURL = '../Server_Side/ajax_script/sendSms.php'; //can't use this on LocalHost as it'll redirect to http://localhost:3000/Server_Side/ajax_script/sendSms.php
+		  //var localhostURL = 'http://localhost/sms_Textbelt_Api_React_JS/sms-api-react/Server_Side/ajax_script/sendSms.php';
+		  var localhostURL   = 'http://localhost/sms_Textbelt_Api_React_JS/Server_Side/ajax_script/sendSms.php';
+          var realServerProdURL = '../Server_Side/ajax_script/sendSms.php'; //can't use this on LocalHost as it'll redirect to http://localhost:3000/Server_Side/ajax_script/sendSms.php
 		  var ajaxURL = '';
 		  
 		  //if finds "localhost" in current url

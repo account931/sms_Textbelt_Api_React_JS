@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    <App  name="Sms Api React JS"/>, 
+    <App  name="Sms Api React JS (preCleansed v.1)"/>, 
     document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

@@ -16,8 +16,7 @@ $result = array(); //test array to monitor
 
 
 //decides whether include test or prod credentials based on $_POST['serverIfTestStatus'] value from ajax
-//if ($_POST['serverIfTestStatus'] === 'true') {
-if (isset($_POST['serverPhone']) && $_POST['serverIfTestStatus'] === 'true') { //Fix 2021
+if (isset($_POST['serverIfTestStatus']) && $_POST['serverIfTestStatus'] === 'true') { //FIX Aug_2021
 	//by default $_POST['serverIfTestStatus'] is TRUE (i.e require test credentials)
 	require_once '../Credentials/test_credentials.php';
     $result['includeFile'] = "Will include Credentials/test_credentials.php";
@@ -35,26 +34,35 @@ if (isset($_POST['serverPhone']) && isset($_POST['serverSms'])){
 	
     //Server regExp check 
     $RegExpChecking = new MySmsTetxBelt\Classes\RegExpCheck();
-    $checked = $RegExpChecking ->check($_POST['serverPhone'], $_POST['serverSms']);
-
+    $checked        = $RegExpChecking ->check($_POST['serverPhone'], $_POST['serverSms']);
 
     //Sending SMS
-    $sms = new MySmsTetxBelt\Classes\SendSms();
+    $sms           = new MySmsTetxBelt\Classes\SendSms();
 	$smsSendStatus = $sms->sendingSms($_POST['serverPhone'], $_POST['serverSms']);
 	
 } else {
-	$smsSendStatus = "Phone number or sms smsSendStatus is missing";
+    //FIX Aug_2021
+    $smsSendStatus = array(
+        'errorX'           => 'Phone number or sms smsSendStatus is missing', 
+        'textBeltResponse' => array('success' => false, 'textId' => null, 'quotaRemaining' => null)
+    ); 
+    
+	//$smsSendStatus = "Phone number or sms smsSendStatus is missing"; //FIX
     //$checked  = false;
-    checked = array('errorPhone' => 'Error in ajax_script/sendSms.php', 'errorSms' =>  'Error in sendSms'); //Fix 2021
-
+    
+    //FIX Aug_2021
+    $checked = array(
+        'errorPhone' => 'Error in ajax_script/sendSms.php', 
+        'errorSms'   =>  'Error in sendSms'
+    ); 
 }
 
 
 
-
-$result['cellar'] = $_POST['serverPhone']; //cell number from ajax
-$result['smssmsSendStatus'] = $_POST['serverSms']; 
-$result['ifTestMode'] = $_POST['serverIfTestStatus']; //switch between test/prod mode, when in test mode, Api uses on server side smsSendStatusBelt test key {"smsSendStatusbelt_test"}
+//FIX Aug_2021
+$result['cellar']           = (isset($_POST['serverPhone']))        ? $_POST['serverPhone']        : 'not set' ; //cell number from ajax
+$result['smssmsSendStatus'] = (isset($_POST['serverSms']))          ? $_POST['serverSms']          : 'not set'; 
+$result['ifTestMode']       = (isset($_POST['serverIfTestStatus'])) ? $_POST['serverIfTestStatus'] : 'not set'; //switch between test/prod mode, when in test mode, Api uses on server side smsSendStatusBelt test key {"smsSendStatusbelt_test"}
 
 
 
@@ -67,8 +75,6 @@ $result = array_merge($result, $checked, $smsSendStatus);
 echo json_encode($result);
  
 
-
-  
   
  /* if (!headers_sent()) {
     header('Access-Control-Allow-Origin: *');

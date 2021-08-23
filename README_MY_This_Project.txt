@@ -3,17 +3,22 @@ TextBelt Api React Js
 IMPORTANT: WHEN DEPLOYING ON REAL HOSTING, DO NOT FORGET TO CHECK IF {Classes/SendSms.php} and {Classes/ CheckSmsDeliveryStat.php} Line 18 is commented,
  ie.artificial json response is disabled.
 
-1.General info
-2. Testing on localhost vs real hosting.
+1. General info
+2. Testing on localhost vs real hosting. If project crashes after new install/moving to new folder
+
 3.1 How it works
 3.2 How sms is sent.
 3.3 Getting response/answer from TextBelt Api
 3.4 Check delivery status
+3.5 If project crashes after new install/moving to new folder
 
-
-
+------------------------------------------------------
 
 1. General info
+
+# This project is an ancestor/predecessor/less-developed-copy of { CLEANSED_GIT_HUB/Sms_Textbelt_Api_React_JS }. 
+  Main difference is that{CLEANSED_GIT_HUB/Sms_Textbelt_Api_React_JS} contains some fixes (like JQ input was switched to pure React) + code Directory URL detection (for ajax) via .env (in JS) + cleaner code (less commented code)
+
 # Structure of this project => see https://github.com/account931/sms_Textbelt_Api_React_JS/blob/master/README_MY_React_Com_Commands.txt
 #This a react version of TextBelt Api client.
 # Index.js is a JS entry point, it contains <App/> Component, 
@@ -28,13 +33,13 @@ which contains all the rest component { <TextArea/>, <TopSectionButtons/> etc}
 
 =====================================================
 
-2.Testing on localhost vs real hosting.
+2. Testing on localhost vs real hosting. If project crashes after new install/moving to new folder
 #Server side php uses cURL, and as long as localhost does not support cURL, you can not test it on localhost normally. 
 The fix it to test on localhost (when u using live localhost://3000, not build folder) is: 
   a.)uncomment Line 18  in Classes/SendSms.php (this will create artificial json response) 
   b) do the same uncommenting in Classes/ CheckSmsDeliveryStat.php
 
-c)Now there is No need to make changes
+c)Now there is No need to make changes in Cleansed (but there is in non-Cleansed version)
  in ajax url (in /TextArea/functions_injected/sendSmsMessage.js. Previously we had to switch between localhost/Server ajax url  {../ServerSide/ajax/sendsms.php}/And/  'http://localhost/sms_Textbelt_Api_React_JS/sms-api-react/Server_Side/ajax_script/sendSms.php.
  (For working Sms send function)
 + had to do the same switch in ajax url (in TextArea/child_components/ResultFromTextbeltApi.js
@@ -44,7 +49,7 @@ Now relevant ajax Url is  selected automatically, bases on current window url
 => if(window.location.href.match(/localhost/)
 
 
-
+d.) if ajax crashes, check  var localhostURL + var realServerProdURL in  TextArea/functions_injected/sendSmsMessage.js  and TextArea/child_components/ResultFromTextbeltApi.js 
 
 =======================================================
 
@@ -76,6 +81,5 @@ Visibility of "Check delivery" button depends on this.state.answerFromTextbelt{s
 
 
 
-
-
+=============================================
 

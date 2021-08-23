@@ -3,7 +3,8 @@ Uses React JS version 16.6.3 (was released on 23/10/2018),  last version is 16.1
 
 #IMPORTANT: WHEN DEPLOYING ON REAL HOSTING, DO NOT FORGET TO CHECK IF {Classes/SendSms.php} and {Classes/ CheckSmsDeliveryStat.php} Line 18 is commented,
  ie.artificial json response is disabled
-
+ 
+# If project crashes after new install/folder change => see Number 2 => README_MY_This_Project.txt
 
 Structure of this project
 
@@ -132,10 +133,12 @@ Server will be running at => http://localhost:3000/
 Folder "BUILD" is for ready created app with all minified concatenated dependencies.
 Created by CLI-> npm run build.
 
-Known Problem Issue: path to js,css in BUILD should be without "/" in beginning => 
+Known Problem Issue: path to js,css in BUILD should be without "/" in beginning => Fix index.html =>
  1. "static/js/...", not "/static/js/" (in index.html) (4 times)
  2. "favicon"
- 3.GIF imge was not loading => change to {e.exports=/*a.p+*/"static/media/loading2.f7ccc9e1.gif"} in build/static/js/main.91b5d174.chunk.js
+ 3. href="manifest.json" , not href="/manifest.json" 
+ 
+ 4.GIF imge was not loading => change to {e.exports=/*a.p+*/"static/media/loading2.f7ccc9e1.gif"} in build/static/js/main.91b5d174.chunk.js
      Var2 => /*s.p+*/
 
 

@@ -55,9 +55,10 @@ class ResultFromTextbeltApi extends Component {
 	      $(".ajax-loader").show(); //show gif loader
 		  
 		  //decide which url to use, switching ajax url when running on localHost or real Hosting
-		  var localhostURL = 'http://localhost/sms_Textbelt_Api_React_JS/sms-api-react/Server_Side/ajax_script/getSmsDeliveryStatus.php';
-		  var realServerProdURL = '../Server_Side/ajax_script/getSmsDeliveryStatus.php'; //can't use this on LocalHost as it'll redirect to http://localhost:3000/Server_Side/ajax_script/sendSms.php
-		  var ajaxURL = '';
+		  //var localhostURL    = 'http://localhost/sms_Textbelt_Api_React_JS/sms-api-react/Server_Side/ajax_script/getSmsDeliveryStatus.php';
+		  var localhostURL      = 'http://localhost/sms_Textbelt_Api_React_JS/Server_Side/ajax_script/getSmsDeliveryStatus.php';
+          var realServerProdURL = '../Server_Side/ajax_script/getSmsDeliveryStatus.php'; //can't use this on LocalHost as it'll redirect to http://localhost:3000/Server_Side/ajax_script/sendSms.php
+		  var ajaxURL           = '';
 		  
 		  //if finds "localhost" in current url
 		  if(window.location.href.match(/localhost/)){  
