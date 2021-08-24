@@ -20,7 +20,9 @@ IMPORTANT: WHEN DEPLOYING ON REAL HOSTING, DO NOT FORGET TO CHECK IF {Classes/Se
 1. General info
 
 # This project is an ancestor/predecessor/less-developed-copy of { CLEANSED_GIT_HUB/Sms_Textbelt_Api_React_JS }. 
-  Main difference is that{CLEANSED_GIT_HUB/Sms_Textbelt_Api_React_JS} contains some fixes (like JQ input was switched to pure React) + getting Directory URL  (for ajax) via .env (REACT_APP_APPLICATION_DIRECTORY) (e.g in src/MyComponents/TextArea/functions_injected/sendSmsMessage.js and  /child_components/ResultFromTextbeltApi.js) + cleaner code (less commented code). In this project you have to hardcode ajax URL for localhost.
+  Main difference is that{CLEANSED_GIT_HUB/Sms_Textbelt_Api_React_JS} contains some fixes (like JQ input was switched to pure React) + getting Directory URL dynamically (for ajax) via .env (REACT_APP_APPLICATION_DIRECTORY) (e.g in src/MyComponents/TextArea/functions_injected/sendSmsMessage.js and  /child_components/ResultFromTextbeltApi.js) + cleaner code (less commented code). In this project you have to hardcode ajax URL for localhost.
+
+#NB: {CLEANSED_GIT_HUB/Sms_Textbelt_Api_React_JS} is a better version (and fully working as per 24.08.2021) than this {sms_Textbelt_Api_React_JS} as: more fully comply with React concept + more easy set-up for ajax URL (due to  via .env (REACT_APP_APPLICATION_DIRECTORY)
   
 # Structure of this project => see https://github.com/account931/sms_Textbelt_Api_React_JS/blob/master/README_MY_React_Com_Commands.txt
 #This a react version of TextBelt Api client.
